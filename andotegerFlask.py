@@ -19,7 +19,7 @@ def tampilkan_referensi():
 
 def baca_hasil_gabungan():
     try:
-        with open('hasil_gabungan.json', 'r') as file:
+        with open('asset/hasil_gabungan.json', 'r') as file:
             return json.load(file)
     except FileNotFoundError:
         return []
