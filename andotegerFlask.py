@@ -99,8 +99,31 @@ def sync_data():
 
 def konversi():
     print("konversi")
+    excel_file = [
+        'asset/DT_AKTIF_TIDAK.xlsx',
+        'asset/DT_NUNGGAK.xlsx',
+        'asset/KREDIT_BEREDAR.xlsx',
+        'asset/PENABUNG.xlsx',
+    ]
+
+    for file in excel_file:
+        # membaca filr
+        df = pd.read_excel(file)
+
+        # konversi ke json
+        json_data = df.to_json(orient='records', indent=4)
+
+        # Buat nama file output
+        json_file = os.path.splitext(file)[0] + '.json'
+
+        # Simpan ke file json
+        with open(json_file, 'w', encoding='utf-8') as f:
+            f.write(json_data)
+
+        print(f"File {file} berhasil di konversi ke {json_file}")
+
+
     # Baca DT_NUNGGAK dengan dtype yang ditentukan
-    
     data_nunggak = pd.read_excel(
         'asset/DT_NUNGGAK.xlsx',
         dtype={
